@@ -1,0 +1,1 @@
+DELETE FROM public.events WHERE slug IN ('reel-making','food-stall-zone','photo-booth','dance-and-singing-open');

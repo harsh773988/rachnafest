@@ -1,0 +1,53 @@
+[
+  {
+    "id": "985ea367-d436-47bd-8d58-0b12f01690bb",
+    "eventId": "ebd6917f-fe39-4035-a7a4-35b69c4017ff",
+    "teamName": null,
+    "source": "public",
+    "createdBy": null,
+    "createdAt": "2026-09-28T04:29:33.576Z",
+    "members": [
+      {
+        "name": "Jane Doe",
+        "branch": "Mechanical",
+        "collegeName": "KK College",
+        "mobile": "9876543210",
+        "email": "jane@example.com"
+      }
+    ]
+  },
+  {
+    "id": "1839b757-ddf1-498d-90e0-9208a3743039",
+    "eventId": "e0111111-1111-4111-a111-111111111101",
+    "teamName": "Team Alpha",
+    "source": "public",
+    "createdBy": null,
+    "createdAt": "2026-09-28T04:32:27.881Z",
+    "members": [
+      {
+        "name": "Alex Smith",
+        "branch": "Computer Science",
+        "collegeName": "KK College",
+        "mobile": "9876543210",
+        "email": "alex@example.com"
+      }
+    ]
+  },
+  {
+    "id": "e0970529-7ec8-41c5-bc4b-75b00f065a6b",
+    "eventId": "ebd6917f-fe39-4035-a7a4-35b69c4017ff",
+    "teamName": null,
+    "source": "public",
+    "createdBy": null,
+    "createdAt": "2026-09-28T04:46:09.586Z",
+    "members": [
+      {
+        "name": "HARSH KUMAR",
+        "branch": "CSE",
+        "collegeName": "KKCEM",
+        "mobile": "7739885070",
+        "email": "harsh773988@gmail.com"
+      }
+    ]
+  }
+]
