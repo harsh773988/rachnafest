@@ -7,16 +7,16 @@ import { DAYS, eventsQuery } from "@/lib/events";
 export const Route = createFileRoute("/schedule")({
   head: () => ({
     meta: [
-      { title: "Schedule — Rachna 2K26 | 5 Days at K.K. Group, Dhanbad" },
+      { title: "Schedule — Rachna 2K26 | 6 Days at K.K. Group, Dhanbad" },
       {
         name: "description",
         content:
-          "Day-wise schedule of Rachna 2K26: opening hawan, cultural nights, esports cups, sports leagues, carnival and celebrity night.",
+          "Day-wise schedule of Rachna 2K26: opening hawan, cultural nights, esports cups, sports leagues, carnival, DJ night and celebrity night across six days.",
       },
       { property: "og:title", content: "Schedule — Rachna 2K26" },
       {
         property: "og:description",
-        content: "Day-wise line-up for the five days of Rachna 2K26.",
+        content: "Day-wise line-up for the six days of Rachna 2K26.",
       },
     ],
   }),
@@ -30,7 +30,7 @@ function SchedulePage() {
     <PageShell>
       <section className="px-5 pt-16 pb-10 md:px-10">
         <p className="meta text-muted-foreground">
-          Timeline / 30 Nov – 5 Dec 2026
+          Timeline / 30 Nov – 5 Dec 2026 · 6 Days
         </p>
         <h1 className="display mt-4" style={{ fontSize: "13vw" }}>
           Schedule

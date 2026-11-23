@@ -13,13 +13,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Rachna 2K26 by Team Kalki: five days of dance, music, sports, esports and art at K.K. Group of Institutions, Dhanbad. Register now.",
+          "Rachna 2K26 by Team Kalki: six days of dance, music, sports, esports and art at K.K. Group of Institutions, Dhanbad. Register now.",
       },
       { property: "og:title", content: "Rachna 2K26 — Annual Fest by Team Kalki" },
       {
         property: "og:description",
         content:
-          "Five days of dance, music, sports, esports and art at K.K. Group of Institutions, Dhanbad.",
+          "Six days of dance, music, sports, esports and art at K.K. Group of Institutions, Dhanbad.",
       },
       { property: "og:url", content: "https://rachna2k26.lovable.app/" },
     ],
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
           "@type": "Festival",
           name: "Rachna 2K26",
           description:
-            "The annual fest of K.K. Group of Institutions, Dhanbad, organized by Team Kalki — five days of culture, sports, esports and art.",
+            "The annual fest of K.K. Group of Institutions, Dhanbad, organized by Team Kalki — six days of culture, sports, esports and art.",
           url: "https://rachna2k26.lovable.app/",
           eventStatus: "https://schema.org/EventScheduled",
           eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
@@ -112,7 +112,7 @@ function Home() {
 
           <div className="mt-8 flex flex-col gap-6 border border-background p-5 md:flex-row md:items-center md:justify-between">
             <p className="meta text-background">
-              Team Kalki × K.K. Group of Institutions, Dhanbad — 5 Days / 30 Nov – 5 Dec
+              Team Kalki × K.K. Group of Institutions, Dhanbad — 6 Days / 30 Nov – 5 Dec
             </p>
             <Link to="/register" className="btn-brutal">
               Register Now
