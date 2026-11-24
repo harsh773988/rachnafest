@@ -15,6 +15,9 @@ import danceCompetition from "@/assets/events/dance-competition.png";
 import singingCompetition from "@/assets/events/singing-competition.webp";
 import bgmiCup from "@/assets/events/bgmi-cup.jpg";
 import freeFireCup from "@/assets/events/free-fire-cup.png";
+import realCricket from "@/assets/events/real-cricket.webp";
+import cubeCompetition from "@/assets/events/cube-competition.jpg";
+import kabaddiCompetition from "@/assets/events/kabaddi-competition.jpg";
 import roadArt from "@/assets/events/road-art.jpg";
 import wallArt from "@/assets/events/wall-art.jpg";
 import treasureHunt from "@/assets/events/treasure-hunt.jpg";
@@ -47,6 +50,9 @@ const EVENT_IMAGES: Record<string, string> = {
   "singing-competition": singingCompetition,
   "bgmi-cup": bgmiCup,
   "free-fire-cup": freeFireCup,
+  "real-cricket": realCricket,
+  "cube-competition": cubeCompetition,
+  "kabaddi-competition": kabaddiCompetition,
   "road-art": roadArt,
   "wall-art": wallArt,
   "treasure-hunt": treasureHunt,

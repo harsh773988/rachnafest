@@ -34,11 +34,11 @@ export const EVENT_COORDINATORS: Record<string, EventCoordinator[]> = {
     { name: "Mr. Avanish Kumar Singh", whatsapp: "919003757958" },
   ],
   "bgmi-cup": [
-    { name: "Mr. Ajay Verma", whatsapp: "919113313966" },
+    { name: "Mr. Ajay Verma", whatsapp: "917091193018" },
     { name: "Mr. Sagar Bauri", whatsapp: "919304833852" },
   ],
   "free-fire-cup": [
-    { name: "Mr. Ajay Verma", whatsapp: "919113313966" },
+    { name: "Mr. Ajay Verma", whatsapp: "917091193018" },
     { name: "Mr. Sagar Bauri", whatsapp: "919304833852" },
   ],
   "road-art": [
