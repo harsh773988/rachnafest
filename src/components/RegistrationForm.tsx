@@ -26,8 +26,11 @@ const optionalMemberSchema = z.object({
   email: z
     .string()
     .trim()
-    .refine((value) => !value || z.string().email().safeParse(value).success, "Enter a valid email")
-    .max(255),
+    .max(255)
+    .refine(
+      (value) => !value || z.string().email().safeParse(value).success,
+      "Enter a valid email",
+    ),
 });
 
 const emptyMember = (college = ""): MemberInput => ({

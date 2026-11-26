@@ -12,8 +12,8 @@ const optionalMemberSchema = z.object({
   email: z
     .string()
     .trim()
-    .refine((value) => !value || z.string().email().safeParse(value).success)
-    .max(255),
+    .max(255)
+    .refine((value) => !value || z.string().email().safeParse(value).success),
 });
 
 const payloadSchema = z.object({
