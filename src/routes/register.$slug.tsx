@@ -129,7 +129,9 @@ function RegisterEvent() {
             <p className="meta">Info</p>
             <ul className="mt-4 flex flex-col gap-3 font-mono text-xs uppercase tracking-widest">
               <li>Day {event?.day ?? "—"}</li>
-              <li>Date: {event?.event_date || (event?.day ? DAY_DATES[event.day] : null) || "TBA"}</li>
+              <li>
+                Date: {event?.event_date || (event?.day ? DAY_DATES[event.day] : null) || "TBA"}
+              </li>
               <li>Type: {event?.participation_type === "group" ? "Group / Team" : "Individual"}</li>
               <li>Venue: K.K. Group of Institutions, Dhanbad</li>
               <li>

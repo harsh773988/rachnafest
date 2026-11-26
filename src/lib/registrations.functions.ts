@@ -5,8 +5,15 @@ const optionalMemberSchema = z.object({
   name: z.string().trim().max(100),
   branch: z.string().trim().max(100),
   collegeName: z.string().trim().max(150),
-  mobile: z.string().trim().refine((value) => !value || /^[0-9+\-\s]{10,15}$/.test(value)),
-  email: z.string().trim().refine((value) => !value || z.string().email().safeParse(value).success).max(255),
+  mobile: z
+    .string()
+    .trim()
+    .refine((value) => !value || /^[0-9+\-\s]{10,15}$/.test(value)),
+  email: z
+    .string()
+    .trim()
+    .refine((value) => !value || z.string().email().safeParse(value).success)
+    .max(255),
 });
 
 const payloadSchema = z.object({
@@ -108,7 +115,7 @@ export const createRegistration = createServerFn({ method: "POST" })
     // local-file fallback cannot work. Throw a clear error instead.
     throw new Error(
       "Registration failed: SUPABASE_SERVICE_ROLE_KEY is not configured. " +
-      "Please set the SUPABASE_SERVICE_ROLE_KEY and SUPABASE_URL environment variables.",
+        "Please set the SUPABASE_SERVICE_ROLE_KEY and SUPABASE_URL environment variables.",
     );
   });
 

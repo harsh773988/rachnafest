@@ -164,7 +164,10 @@ export async function fetchEvents(): Promise<EventRow[]> {
     }
 
     // Ensure BGMI Cup and Free Fire Cup are group events
-    if ((item.slug === "bgmi-cup" || item.slug === "free-fire-cup") && item.participation_type !== "group") {
+    if (
+      (item.slug === "bgmi-cup" || item.slug === "free-fire-cup") &&
+      item.participation_type !== "group"
+    ) {
       item = { ...item, participation_type: "group" as ParticipationType };
     }
 

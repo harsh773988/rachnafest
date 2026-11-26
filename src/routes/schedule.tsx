@@ -29,9 +29,7 @@ function SchedulePage() {
   return (
     <PageShell>
       <section className="px-5 pt-16 pb-10 md:px-10">
-        <p className="meta text-muted-foreground">
-          Timeline / 30 Nov – 5 Dec 2026 · 6 Days
-        </p>
+        <p className="meta text-muted-foreground">Timeline / 30 Nov – 5 Dec 2026 · 6 Days</p>
         <h1 className="display mt-4" style={{ fontSize: "13vw" }}>
           Schedule
         </h1>

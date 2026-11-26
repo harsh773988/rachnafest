@@ -23,7 +23,11 @@ const optionalMemberSchema = z.object({
     .string()
     .trim()
     .refine((value) => !value || /^[0-9+\-\s]{10,15}$/.test(value), "Enter a valid mobile number"),
-  email: z.string().trim().refine((value) => !value || z.string().email().safeParse(value).success, "Enter a valid email").max(255),
+  email: z
+    .string()
+    .trim()
+    .refine((value) => !value || z.string().email().safeParse(value).success, "Enter a valid email")
+    .max(255),
 });
 
 const emptyMember = (college = ""): MemberInput => ({
@@ -202,7 +206,8 @@ export function RegistrationForm({
             {FIELDS.map((f) => (
               <div key={f.key} className={f.key === "collegeName" ? "md:col-span-2" : ""}>
                 <label htmlFor={`${f.key}-${i}`} className="meta mb-2 block">
-                  {f.label}{hasOptionalMembers ? " (Optional)" : ""}
+                  {f.label}
+                  {hasOptionalMembers ? " (Optional)" : ""}
                 </label>
                 <input
                   id={`${f.key}-${i}`}
