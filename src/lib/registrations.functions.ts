@@ -1,21 +1,18 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const memberSchema = z.object({
-  name: z.string().trim().min(2).max(100),
-  branch: z.string().trim().min(1).max(100),
-  collegeName: z.string().trim().min(2).max(150),
-  mobile: z
-    .string()
-    .trim()
-    .regex(/^[0-9+\-\s]{10,15}$/),
-  email: z.string().trim().email().max(255),
+const optionalMemberSchema = z.object({
+  name: z.string().trim().max(100),
+  branch: z.string().trim().max(100),
+  collegeName: z.string().trim().max(150),
+  mobile: z.string().trim().refine((value) => !value || /^[0-9+\-\s]{10,15}$/.test(value)),
+  email: z.string().trim().refine((value) => !value || z.string().email().safeParse(value).success).max(255),
 });
 
 const payloadSchema = z.object({
   eventId: z.string().uuid(),
   teamName: z.string().trim().max(80).nullable().optional(),
-  members: z.array(memberSchema).min(1).max(25),
+  members: z.array(optionalMemberSchema).min(1).max(25),
   source: z.enum(["public", "admin"]).default("public"),
   createdBy: z.string().uuid().nullable().optional(),
 });

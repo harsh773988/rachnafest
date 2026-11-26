@@ -15,6 +15,17 @@ const memberSchema = z.object({
   email: z.string().trim().email("Enter a valid email").max(255),
 });
 
+const optionalMemberSchema = z.object({
+  name: z.string().trim().max(100),
+  branch: z.string().trim().max(100),
+  collegeName: z.string().trim().max(150),
+  mobile: z
+    .string()
+    .trim()
+    .refine((value) => !value || /^[0-9+\-\s]{10,15}$/.test(value), "Enter a valid mobile number"),
+  email: z.string().trim().refine((value) => !value || z.string().email().safeParse(value).success, "Enter a valid email").max(255),
+});
+
 const emptyMember = (college = ""): MemberInput => ({
   name: "",
   branch: "",
@@ -43,6 +54,8 @@ export function RegistrationForm({
   onDone?: () => void;
 }) {
   const isGroup = event.participation_type === "group";
+  const hidesTeamName = event.slug === "dance-and-singing-open";
+  const hasOptionalMembers = hidesTeamName;
   const [teamName, setTeamName] = useState("");
   const [members, setMembers] = useState<MemberInput[]>([emptyMember()]);
   const [saving, setSaving] = useState(false);
@@ -58,12 +71,12 @@ export function RegistrationForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (isGroup && teamName.trim().length < 2) {
+    if (isGroup && !hidesTeamName && teamName.trim().length < 2) {
       toast.error("Team name is required");
       return;
     }
     for (const [i, m] of members.entries()) {
-      const parsed = memberSchema.safeParse(m);
+      const parsed = (hasOptionalMembers ? optionalMemberSchema : memberSchema).safeParse(m);
       if (!parsed.success) {
         toast.error(`Member ${i + 1}: ${parsed.error.issues[0].message}`);
         return;
@@ -73,14 +86,14 @@ export function RegistrationForm({
     try {
       await submitRegistration({
         eventId: event.id,
-        teamName: isGroup ? teamName : null,
+        teamName: isGroup && !hidesTeamName ? teamName : null,
         members,
         source,
         createdBy,
       });
       toast.success("Registration recorded");
       setSubmitted({
-        teamName: isGroup ? teamName.trim() : null,
+        teamName: isGroup && !hidesTeamName ? teamName.trim() : null,
         members: members.map((member) => ({ ...member })),
       });
       setTeamName("");
@@ -152,7 +165,7 @@ export function RegistrationForm({
         </span>
       </div>
 
-      {isGroup && (
+      {isGroup && !hidesTeamName && (
         <div className="mt-6">
           <label htmlFor="team-name" className="meta mb-2 block">
             Team Name
@@ -189,7 +202,7 @@ export function RegistrationForm({
             {FIELDS.map((f) => (
               <div key={f.key} className={f.key === "collegeName" ? "md:col-span-2" : ""}>
                 <label htmlFor={`${f.key}-${i}`} className="meta mb-2 block">
-                  {f.label}
+                  {f.label}{hasOptionalMembers ? " (Optional)" : ""}
                 </label>
                 <input
                   id={`${f.key}-${i}`}
