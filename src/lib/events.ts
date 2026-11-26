@@ -93,7 +93,7 @@ const SLUG_DAY: Record<string, number> = {
 };
 
 /** New events that might not exist in the DB yet */
-const FALLBACK_EVENTS: EventRow[] = [
+export const FALLBACK_EVENTS: EventRow[] = [
   {
     id: "e0222222-2222-4222-a222-222222222201",
     name: "Real Cricket",

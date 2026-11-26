@@ -39,23 +39,26 @@ export const createRegistration = createServerFn({ method: "POST" })
 
       let event = initialEvent;
 
-      // If event not found yet in database (e.g. EngiFusion), ensure it exists in events table
+      // Fallback events can be shown before their database seed has been applied.
       if (!event) {
-        const { DEFAULT_ENGIFUSION } = await import("./events");
-        if (data.eventId === DEFAULT_ENGIFUSION.id) {
+        const { DEFAULT_ENGIFUSION, FALLBACK_EVENTS } = await import("./events");
+        const fallbackEvent = [DEFAULT_ENGIFUSION, ...FALLBACK_EVENTS].find(
+          (candidate) => candidate.id === data.eventId,
+        );
+
+        if (fallbackEvent) {
           const { data: upserted, error: upsertError } = await supabaseAdmin
             .from("events")
             .upsert(
               {
-                id: DEFAULT_ENGIFUSION.id,
-                name: DEFAULT_ENGIFUSION.name,
-                slug: DEFAULT_ENGIFUSION.slug,
-                day: DEFAULT_ENGIFUSION.day,
-                participation_type: DEFAULT_ENGIFUSION.participation_type,
-                category: DEFAULT_ENGIFUSION.category,
-                registrable: DEFAULT_ENGIFUSION.registrable,
-                sort_order: DEFAULT_ENGIFUSION.sort_order,
-                description: DEFAULT_ENGIFUSION.description,
+                name: fallbackEvent.name,
+                slug: fallbackEvent.slug,
+                day: fallbackEvent.day,
+                participation_type: fallbackEvent.participation_type,
+                category: fallbackEvent.category,
+                registrable: fallbackEvent.registrable,
+                sort_order: fallbackEvent.sort_order,
+                description: fallbackEvent.description,
               },
               { onConflict: "slug" },
             )
@@ -63,8 +66,11 @@ export const createRegistration = createServerFn({ method: "POST" })
             .maybeSingle();
 
           if (upsertError) {
-            console.error("Failed to auto-upsert EngiFusion", upsertError);
-          } else if (upserted) {
+            throw new Error(
+              `Failed to prepare ${fallbackEvent.name} registration: ${upsertError.message}`,
+            );
+          }
+          if (upserted) {
             event = upserted;
             data.eventId = upserted.id;
           }
